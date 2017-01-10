@@ -18,6 +18,10 @@ def cli(url, out, chunk):
 	click.echo('You must specify an output file path. See --help for more information.')
 	return
 
+    if chunk < 1:
+	click.echo('You must specify a chunk size of at least 1. See --help for more information.')
+	return
+
     response = requests.get(url, stream=True)
     content_length = response.headers.get('content-length', None)
     
