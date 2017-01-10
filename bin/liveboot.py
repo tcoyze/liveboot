@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import math
 
 import click
 import requests
@@ -28,7 +29,7 @@ def cli(url, out, chunk):
     num_bytes = None
 
     if content_length:
-	num_bytes = int(content_length)/chunk    
+	num_bytes = (int(content_length)/chunk) + 1
 
     for part in tqdm(response.iter_content(chunk_size=chunk), total=num_bytes):
         if part:
